@@ -21,6 +21,37 @@ public class SysUser implements Serializable {
     @Column(nullable = true, unique = true)
     private String nickname;
 
+    @Column(nullable = true, unique = true)
+    public String email;
+    @Column(nullable = true, unique = true)
+    public String tellphone;
+    @Column(nullable = true, unique = true)
+    public String address;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getTellphone() {
+        return tellphone;
+    }
+
+    public void setTellphone(String tellphone) {
+        this.tellphone = tellphone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getId() {
         return id;
     }
@@ -54,4 +85,16 @@ public class SysUser implements Serializable {
         this.nickname = nickname;
     }
 
+    @Override
+    public String toString() {
+        return "SysUser{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", email='" + email + '\'' +
+                ", tellphone='" + tellphone + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
