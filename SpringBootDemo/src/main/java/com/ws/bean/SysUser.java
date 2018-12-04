@@ -1,7 +1,4 @@
 package com.ws.bean;
-
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -14,19 +11,23 @@ public class SysUser implements Serializable {
     private String id;
     @Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String password;
-    /*@Column(nullable = true,unique = true)
-    private String email;*/
-    @Column(nullable = true, unique = true)
-    private String nickname;
 
+    @Column(nullable = true)
+    private String nickname;
     @Column(nullable = true, unique = true)
     public String email;
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true, unique = true )
     public String tellphone;
-    @Column(nullable = true, unique = true)
+    @Column(nullable = true)
     public String address;
+    @Column(nullable = true)
+    public String loginIp;
+    @Column(nullable = true)
+    public String loginAt;
+    @Column(nullable = true)
+    public String loginCount;
 
     public String getEmail() {
         return email;
