@@ -104,7 +104,7 @@
 <script src="/js/scripts.js"></script>
 <script src="/js/bootstrapValidator.min.js"></script>
 <script src="/js/jquery.form.min.js"></script>
-
+<script src="/plugs/layer/layer.js"></script>
 <!--[if lt IE 10]>
 <script src="/js/placeholder.js"></script>
 <![endif]-->
@@ -138,6 +138,7 @@
             },
             fields:{
                 username: {
+                    //threshold: 6,//当用户名超过6位时才发送ajax请求进行用户名校验
                     message: 'The username is not valid',
                     validators: {
                         notEmpty: {
@@ -152,10 +153,10 @@
                                 regexp: /^[a-zA-Z0-9]+$/,
                             message: '用户名不能包含中文和特殊字符'
                         },
-                        /*remote: {
-                            url: 'remote.php',
+                        remote: {
+                            url: '/checkUsername',
                             message: '该用户名已存在'
-                        },*/
+                        },
                         different: {
                             field: 'password',
                             message: '用户名不能与密码一致'
@@ -194,13 +195,19 @@
                     }
                 },
                 email: {
+                    //threshold: 6,//当邮箱超过6位时才发送ajax请求进行邮箱校验
                     validators: {
                         emailAddress: {
                             message: '邮箱格式不正确'
-                        }
+                        },
+                        remote: {
+                            url: '/checkEmail',
+                            message: '该邮箱已存在'
+                        },
                     }
                 },
                 tellphone:{
+                    //threshold: 11,//当邮箱超过6位时才发送ajax请求进行邮箱校验
                     validators:{
                         notEmpty: {
                             message: '手机号不能为空'
@@ -214,6 +221,10 @@
                             regexp: /^[0-9]+/,
                             message: '手机号码格式不正确'
                         },
+                        remote: {
+                            url: '/checkPhone',
+                            message: '该手机号码已存在'
+                        },
                     },
                 },
             },
@@ -223,10 +234,11 @@
         $("#registerForm").ajaxForm(function (data) {
             console.log(data);
             if(true==data){
-                window.location.href="hello.html"
+                layer.msg("注册成功",{icon:6});
+                //window.location.href="hello.html"
             }
             else if(false == data){
-                alert("error")
+                layer.msg("注册失败",{icon:5});
             }
         })
     })

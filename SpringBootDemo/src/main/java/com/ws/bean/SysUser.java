@@ -13,12 +13,11 @@ public class SysUser implements Serializable {
     private String username;
     @Column(nullable = false)
     private String password;
-
     @Column(nullable = true)
     private String nickname;
     @Column(nullable = true, unique = true)
     public String email;
-    @Column(nullable = true, unique = true )
+    @Column(nullable = true)
     public String tellphone;
     @Column(nullable = true)
     public String address;
@@ -96,6 +95,9 @@ public class SysUser implements Serializable {
                 ", email='" + email + '\'' +
                 ", tellphone='" + tellphone + '\'' +
                 ", address='" + address + '\'' +
+                ", loginIp='" + loginIp + '\'' +
+                ", loginAt='" + loginAt + '\'' +
+                ", loginCount='" + loginCount + '\'' +
                 '}';
     }
 }

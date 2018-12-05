@@ -142,7 +142,7 @@ public class StringUtil {
         } else if (StringUtils.isNotBlank(remoteAddr)) {
             remoteAddr = request.getHeader("WL-Proxy-Client-IP");
         }
-        String ip = remoteAddr != null ? remoteAddr : StringUtils.sNull(request.getRemoteAddr());
+        String ip = remoteAddr != null ? remoteAddr : Strings.sNull(request.getRemoteAddr());
         if (isIPv4Address(ip) || isIPv6Address(ip)) {
             return ip;
         }

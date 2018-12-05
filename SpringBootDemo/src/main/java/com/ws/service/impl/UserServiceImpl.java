@@ -20,4 +20,31 @@ public class UserServiceImpl implements UserService {
         SysUser save = userDao.save(sysUser);
         return save;
     }
+
+    @Override
+    public Boolean checkUsername(String username) {
+        String uname = userDao.checkUsername(username);
+        if(null==uname){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Boolean checkEmail(String email) {
+      String uemail=  userDao.checkEmail(email);
+      if(null==uemail){
+          return true;
+      }
+        return false;
+    }
+
+    @Override
+    public Boolean checkPhone(String tellphone) {
+        String phone=userDao.checkPhone(tellphone);
+        if(null==phone){
+            return true;
+        }
+        return false;
+    }
 }
