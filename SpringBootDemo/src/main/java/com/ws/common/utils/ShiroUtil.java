@@ -1,4 +1,4 @@
-package com.ws.utils;
+package com.ws.common.utils;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;

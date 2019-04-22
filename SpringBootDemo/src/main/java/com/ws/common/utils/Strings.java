@@ -1,4 +1,4 @@
-package com.ws.utils;
+package com.ws.common.utils;
 
 
 import java.net.MalformedURLException;

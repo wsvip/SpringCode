@@ -1,4 +1,4 @@
-package com.ws.utils;
+package com.ws.common.utils;
 
 import org.apache.commons.lang3.time.DateFormatUtils;
 

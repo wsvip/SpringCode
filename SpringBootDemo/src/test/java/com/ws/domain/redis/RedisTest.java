@@ -1,6 +1,6 @@
 package com.ws.domain.redis;
 
-import com.ws.utils.MD5Utils;
+import com.ws.common.utils.MD5Utils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

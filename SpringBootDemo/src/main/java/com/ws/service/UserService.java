@@ -1,12 +1,12 @@
 package com.ws.service;
 
-import com.ws.bean.SysUser;
+import com.ws.bean.Sys_User;
 
 
 public interface UserService {
-    SysUser findByUsername(String username);
+    Sys_User findByUsername(String username);
 
-    SysUser save(SysUser sysUser);
+    Sys_User save(Sys_User sysUser);
     /**
      * @Author: WS
      * @Date: 2018/12/5 19:05
@@ -34,4 +34,7 @@ public interface UserService {
      * @Description: 校验手机号是否存在，存在返回false，不存在返回true
      */
     Boolean checkPhone(String tellphone);
+
+
+    void updateUser(String loginIp, int loginCount, int loginAt, String id);
 }

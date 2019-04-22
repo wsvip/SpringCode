@@ -1,6 +1,6 @@
 package com.ws.domain;
 
-import com.ws.bean.SysUser;
+import com.ws.bean.Sys_User;
 import com.ws.dao.UserDao;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,12 +15,12 @@ public class SpringbootdemoApplicationTests {
     private UserDao userDao;
     @Test
     public void contextLoads() {
-        SysUser sysUser = new SysUser();
+        Sys_User sysUser = new Sys_User();
         sysUser.setUsername("zs");
         sysUser.setPassword("124");
        // sysUser.setEmail("120171785@qq.com");
         sysUser.setNickname("张三");
-        SysUser count = userDao.save(sysUser);
+        Sys_User count = userDao.save(sysUser);
         //System.err.println(count.getEmail());
     }
 

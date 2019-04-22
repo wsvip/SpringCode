@@ -1,6 +1,6 @@
 package com.ws.service.impl;
 
-import com.ws.bean.SysUser;
+import com.ws.bean.Sys_User;
 import com.ws.dao.UserDao;
 import com.ws.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +11,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserDao userDao;
     @Override
-    public SysUser findByUsername(String username) {
+    public Sys_User findByUsername(String username) {
         return userDao.findByUsername(username);
     }
 
     @Override
-    public SysUser save(SysUser sysUser) {
-        SysUser save = userDao.save(sysUser);
+    public Sys_User save(Sys_User sysUser) {
+        Sys_User save = userDao.save(sysUser);
         return save;
     }
 
@@ -46,5 +46,11 @@ public class UserServiceImpl implements UserService {
             return true;
         }
         return false;
+    }
+
+
+    @Override
+    public void updateUser(String loginIp, int loginCount, int loginAt, String id) {
+        userDao.updateUserWhenLogin(loginIp,loginCount,loginAt,id);
     }
 }
