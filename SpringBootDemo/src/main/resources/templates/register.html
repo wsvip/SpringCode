@@ -15,7 +15,7 @@
     <!--<link rel="stylesheet" href="/css/form-elements.css">-->
     <link rel="stylesheet" href="/statics/css/bootstrap.min.css">
     <link rel="stylesheet" href="/statics/css/bootstrapValidator.min.css">
-
+    <link rel="stylesheet" href="/statics/plugs/layui/css/layui.css">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -104,7 +104,8 @@
 <script src="/statics/js/scripts.js"></script>
 <script src="/statics/js/bootstrapValidator.min.js"></script>
 <script src="/statics/js/jquery.form.min.js"></script>
-<script src="/statics/plugs/layer/layer.js"></script>
+<!--<script src="/statics/plugs/layer/layer.js"></script>-->
+<script src="/statics/plugs/layui/layui.js"></script>
 <!--[if lt IE 10]>
 <script src="/statics/js/placeholder.js"></script>
 <![endif]-->
@@ -113,6 +114,10 @@
 
 </html>
 <script>
+    var layer;
+    layui.use('layer',function () {
+        layer=layui.layer;
+    })
     $(function () {
         /*表单验证*/
         $("#registerForm").bootstrapValidator({
@@ -214,7 +219,7 @@
                     },
                 },
             },
-        })
+        });
         /*表单验证结束位置*/
         /*表单提交后接收后台返回的数据*/
         $("#registerForm").ajaxForm(function (data) {

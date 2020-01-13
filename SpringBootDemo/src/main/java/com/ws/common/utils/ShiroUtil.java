@@ -10,9 +10,6 @@ import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
 import java.util.Collection;
 
-/**
- * Created by wizzer on 2017/1/16.
- */
 public class ShiroUtil {
     private static final String ROLE_NAMES_DELIMETER = ",";
     private static final String PERMISSION_NAMES_DELIMETER = ",";

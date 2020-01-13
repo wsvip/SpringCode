@@ -1,40 +1,49 @@
 package com.ws.bean;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
+import com.ws.common.utils.StringUtil;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity
+//@Entity
 //@Table(name = "SYS_USER")
+@TableName("sys_user")
 public class Sys_User implements Serializable {
-    @Id
+    //@Id
    // @GenericGenerator(name = "userId", strategy = "uuid") //这个是hibernate的注解/生成32位UUID
    // @GeneratedValue(generator = "userId")
+    @TableId(type = IdType.UUID)
     private String id;
-    @Column(nullable = false, unique = true)
+    //@Column(nullable = false, unique = true)
     private String username;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String password;
-    @Column(nullable = false)
+    //@Column(nullable = false)
     private String salt;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private String nickname;
-    @Column(nullable = true, unique = true)
+    //@Column(nullable = true, unique = true)
     private String email;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private String tellphone;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private String address;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private String loginIp;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private Integer loginAt;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     private Integer loginCount;
-    @Column(nullable = true)
+    //@Column(nullable = true)
     public Boolean disabled=Boolean.FALSE;
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "SYS_USER_ROLE",joinColumns = {@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    //@ManyToMany(fetch = FetchType.EAGER)
+    //@JoinTable(name = "SYS_USER_ROLE",joinColumns = {@JoinColumn(name = "user_id")},inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    @TableField(exist = false)
     private List<Sys_Role> roles;
 
     public String getId() {

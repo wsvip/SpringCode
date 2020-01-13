@@ -5,6 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
+/**
+ * 编码过滤器
+ * @author WS-
+ */
 @Configuration
 public class MyEncodingFilterConfig {
     @Bean

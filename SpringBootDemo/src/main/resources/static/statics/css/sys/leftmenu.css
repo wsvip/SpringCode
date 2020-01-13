@@ -1,0 +1,24 @@
+.menuBody{
+    background-color: red;
+    opacity: 0.5;
+}
+.userMenu{
+    text-align: center;
+    /*height: 200px;*/
+}
+.roleMenu{
+    text-align: center;
+    /*height: 200px;*/
+}
+.permMenu{
+    text-align: center;
+    /*height: 200px;*/
+}
+.logMenu{
+    text-align: center;
+    /*height: 200px;*/
+}
+.statusMenu{
+    text-align: center;
+    /*height: 200px;*/
+}

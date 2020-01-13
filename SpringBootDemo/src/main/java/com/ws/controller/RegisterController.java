@@ -5,6 +5,8 @@ import com.ws.common.utils.UuidUtils;
 import com.ws.service.UserService;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import java.util.Map;
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
+    private final Logger logger= LoggerFactory.getLogger(RegisterController.class);
     @Autowired
     private UserService userService;
 
@@ -37,19 +40,19 @@ public class RegisterController {
     public Boolean register(Sys_User formData) {
         try {
             //生成用户的uuid
-            String uuid = UuidUtils.getUuid();
+            //String uuid = UuidUtils.getUuid();
             //加密用户密码
             String pwd = formData.getPassword();
             SecureRandomNumberGenerator srng = new SecureRandomNumberGenerator();
             String salt = srng.nextBytes().toBase64();
             String password = new Sha256Hash(pwd, salt, 1024).toBase64();
             //将uuid和加密后的密码重新添加到用户信息中
-            formData.setId(uuid);
+            //formData.setId(uuid);
             formData.setSalt(salt);
             formData.setLoginCount(0);
             formData.setPassword(password);
-            Sys_User save = userService.save(formData);
-            System.err.println(save);
+            int count = userService.saveUser(formData);
+            logger.info("用户[{}]注册成功",formData.getUsername());
             return true;
         } catch (Exception e) {
             e.printStackTrace();

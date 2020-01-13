@@ -6,6 +6,7 @@ import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,6 +15,10 @@ import javax.servlet.Filter;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+/**
+ * shiro 配置类
+ * @author WS-
+ */
 @Configuration
 public class ShiroConfig {
     @Bean
@@ -30,6 +35,7 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/statics/**", "anon");
         filterChainDefinitionMap.put("/register/**", "anon");
         filterChainDefinitionMap.put("/login/**", "anon");
+        filterChainDefinitionMap.put("/user/**", "anon");
         filterChainDefinitionMap.put("/doLogin", "anon");
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
@@ -37,7 +43,7 @@ public class ShiroConfig {
         //<!-- authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问-->
         filterChainDefinitionMap.put("/**", "authc");
         // 如果不设置默认会自动寻找Web工程根目录下的"/login.jsp"页面
-        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setLoginUrl("/login/index");
         // 登录成功后要跳转的链接
         shiroFilterFactoryBean.setSuccessUrl("/index");
         //未授权界面;
@@ -49,7 +55,6 @@ public class ShiroConfig {
     }
     /**
      * @Author:  WS-
-      * @param null
      * @return:
      * @Date:    2019/4/22  23:04
      * @Description: realm
@@ -63,7 +68,6 @@ public class ShiroConfig {
     }
     /**
      * @Author:  WS-
-      * @param null
      * @return:
      * @Date:    2019/4/22  23:02
      * @Description: 密码校验管理器
@@ -82,6 +86,7 @@ public class ShiroConfig {
     @Bean
     public SecurityManager securityManager(PlatformAuthorizingRealm realm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
+        defaultWebSecurityManager.setSessionManager(new DefaultWebSessionManager());
         defaultWebSecurityManager.setRealm(realm);
         return defaultWebSecurityManager;
     }

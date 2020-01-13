@@ -1,48 +1,63 @@
 package com.ws.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.ws.bean.Sys_User;
-import com.ws.dao.UserDao;
+import com.ws.mapper.UserMapper;
 import com.ws.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl extends ServiceImpl<UserMapper,Sys_User> implements UserService  {
     @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
     @Override
     public Sys_User findByUsername(String username) {
-        return userDao.findByUsername(username);
+        //return userMapper.findByUsername(username);
+        QueryWrapper<Sys_User> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        Sys_User user = userMapper.selectOne(wrapper);
+        return user;
     }
 
     @Override
-    public Sys_User save(Sys_User sysUser) {
-        Sys_User save = userDao.save(sysUser);
-        return save;
+    public int saveUser(Sys_User sysUser) {
+        int insert = userMapper.insert(sysUser);
+        return insert;
     }
 
     @Override
-    public Boolean checkUsername(String username) {
-        String uname = userDao.checkUsername(username);
-        if(null==uname){
+    public boolean checkUsername(String username) {
+        QueryWrapper<Sys_User> wrapper = new QueryWrapper<>();
+        wrapper.eq("username",username);
+        Sys_User user = userMapper.selectOne(wrapper);
+        if(null==user){
             return true;
         }
         return false;
     }
 
     @Override
-    public Boolean checkEmail(String email) {
-      String uemail=  userDao.checkEmail(email);
-      if(null==uemail){
+    public boolean checkEmail(String email) {
+        QueryWrapper<Sys_User> wrapper = new QueryWrapper<>();
+        wrapper.eq("email", email);
+        Sys_User user = userMapper.selectOne(wrapper);
+        if(null==user){
           return true;
-      }
+        }
         return false;
     }
 
     @Override
-    public Boolean checkPhone(String tellphone) {
-        String phone=userDao.checkPhone(tellphone);
-        if(null==phone){
+    public boolean checkPhone(String tellphone) {
+        QueryWrapper<Sys_User> wrapper = new QueryWrapper<>();
+        wrapper.eq("tellphone", tellphone);
+        Sys_User user = userMapper.selectOne(wrapper);
+        if(null==user){
             return true;
         }
         return false;
@@ -50,7 +65,44 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public void updateUser(String loginIp, int loginCount, int loginAt, String id) {
-        userDao.updateUserWhenLogin(loginIp,loginCount,loginAt,id);
+    public void updateUser(Sys_User user) {
+        //userMapper.updateUserWhenLogin(loginIp,loginCount,loginAt,id);
+        userMapper.updateById(user);
+    }
+
+    @Override
+    public List<Sys_User> userListByPage(Page<Sys_User> iPage,String condition) {
+        List<Sys_User>userList=userMapper.userListByPage(iPage,condition);
+        return userList;
+    }
+
+    @Override
+    public int delUserData(String userId) {
+        int delCount = userMapper.delUserAndUserRole(userId);
+        return delCount;
+    }
+
+    @Override
+    public Sys_User findByUserId(String userId) {
+        Sys_User sys_user = userMapper.selectById(userId);
+        return sys_user;
+    }
+
+    @Override
+    public int editUserByUserId(Sys_User user) {
+        int i = userMapper.updateById(user);
+        return i;
+    }
+
+    @Override
+    public List<Sys_User> getAssUserData(String roleId) {
+        List<Sys_User>  userList=userMapper.getAssUserData(roleId);
+        return userList;
+    }
+
+    @Override
+    public List<Sys_User> getAssedUserData(String roleId) {
+        List<Sys_User> userList=userMapper.getAssedUserData(roleId);
+        return userList;
     }
 }

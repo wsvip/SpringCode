@@ -16,12 +16,22 @@ public class PlatformAuthorizingRealm extends AuthorizingRealm {
     @Autowired
     private UserService userService;
 
-
+    /**
+     * 用户权限认证
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         return null;
     }
 
+    /**
+     * 用户登录授权
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         if (token.getClass().isAssignableFrom(PlatformToken.class)) {

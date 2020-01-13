@@ -1,0 +1,81 @@
+<%layout("index.html"){%>
+<div class="row">
+    <div class="col-lg-1 menuBody">
+        <div class="row" >
+            <div class="col-lg-12 userMenu" style="background-color: #80626a">
+                <a href="javascript:void(0)" onclick="goToUserManager()">
+                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+                    <p>用户管理</p>
+                </a>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-12 roleMenu" style="background-color: orange">
+                <a href="javascript:void(0)" onclick="goToRoleManager()">
+                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+                    <p>角色管理</p>
+                </a>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-12 permMenu" style="background-color: yellow">
+                <a href="javascript:void(0)" onclick="goToPermManager()">
+                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+                    <p>权限管理</p>
+                </a>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-12 logMenu" style="background-color: deeppink">
+                <a href="javascript:void(0)" onclick="goToUserManager()">
+                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+                    <p>日志管理</p>
+                </a>
+            </div>
+        </div>
+        <div class="row" >
+            <div class="col-lg-12 statusMenu" style="background-color: darkmagenta">
+                <a href="javascript:void(0)" onclick="goToUserManager()">
+                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+                    <p>性能监控</p>
+                </a>
+            </div>
+        </div>
+    </div>
+    ${layoutContent}
+</div>
+<script>
+    //获取屏幕高度
+    var avaliHeight=$(document).height();
+    //获取头部元素高度
+    var headerHeight =$(".sys_header").innerHeight();
+    var userMenu = $(".userMenu");
+    var roleMenu = $(".roleMenu");
+    var permMenu = $(".permMenu");
+    var logMenu = $(".logMenu");
+    var statusMenu = $(".statusMenu");
+    //设置各个菜单模块高度
+    userMenu.height((avaliHeight-headerHeight)/5);
+    roleMenu.height((avaliHeight-headerHeight)/5);
+    permMenu.height((avaliHeight-headerHeight)/5);
+    logMenu.height((avaliHeight-headerHeight)/5);
+    statusMenu.height((avaliHeight-headerHeight)/5);
+    
+    
+    function goToUserManager() {
+        location.href='/v1/api/sys/user/index';
+    }
+    function goToRoleManager() {
+        location.href='/v1/api/sys/role/index';
+    }
+    function goToPermManager() {
+        location.href='/v1/api/sys/perm/index';
+    }
+    function goToLogManager() {
+        location.href='/v1/api/sys/log/index';
+    }
+    function statusManager() {
+        location.href='/v1/api/sys/status/index';
+    }
+</script>
+<%}%>
