@@ -2,6 +2,7 @@ package com.ws.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.ws.bean.Sys_Role;
 import com.ws.bean.Sys_User;
 
 import java.util.List;
@@ -87,4 +88,6 @@ public interface UserService extends IService<Sys_User> {
      * @return List<Sys_User>
      */
     List<Sys_User> getAssedUserData(String roleId);
+
+
 }

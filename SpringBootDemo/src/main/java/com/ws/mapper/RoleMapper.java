@@ -31,4 +31,7 @@ public interface RoleMapper extends BaseMapper<Sys_Role> {
     int saveAssPerm(@Param("idList") List<String> idList,@Param("roleId") String roleId);
 
     int deleteAssPerm(String roleId);
+
+    List<Sys_Role> findRolesByUserId(String userId);
+
 }

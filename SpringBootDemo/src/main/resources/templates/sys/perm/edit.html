@@ -32,6 +32,12 @@
                     </div>
                 </div>
                 <div class="col-xs-12 form-group">
+                    <label for="icon" class="col-xs-2 control-label">权限标识</label>
+                    <div class="col-xs-10">
+                        <input type="text" id="icon" name="icon" value="${perm.icon}" class="form-control" placeholder="权限标识" lay-verify="required">
+                    </div>
+                </div>
+                <div class="col-xs-12 form-group">
                     <label for="url" class="col-xs-2 control-label">访问路径</label>
                     <div class="col-xs-10">
                         <input type="text" class="form-control" id="url" name="url" placeholder="访问路径" value="${perm.url}" lay-verify="required">

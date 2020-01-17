@@ -51,4 +51,12 @@ public interface RoleService extends IService<Sys_Role> {
      * @return
      */
     int saveAssPerm(String[] ids, String roleId);
+
+    /**
+     * 根据用户id获取用户角色列表
+     * @param userId 用户id
+     * @return List<Sys_Role>
+     */
+    List<Sys_Role> findRolesByUserId(String userId);
+
 }

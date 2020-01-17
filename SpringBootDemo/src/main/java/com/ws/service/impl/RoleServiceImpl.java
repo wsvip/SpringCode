@@ -91,4 +91,13 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Sys_Role> implement
         }
         return count;
     }
+
+    @Override
+    public List<Sys_Role> findRolesByUserId(String userId) {
+        List<Sys_Role> roles=roleMapper.findRolesByUserId(userId);
+        if (null != roles && roles.size() > 0) {
+            return roles;
+        }
+        return null;
+    }
 }

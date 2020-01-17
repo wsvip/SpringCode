@@ -40,6 +40,18 @@
         in
         (select per_id from sys_role_per where role_id=#{roleId})
     </select>
+    <select id="findRolesByUserId" parameterType="string" resultType="com.ws.bean.Sys_Role">
+        SELECT
+            t1.id,
+            t1.description,
+            t1.disabled,
+            t1.role,
+            t1.rolename
+        FROM
+            sys_role t1
+            INNER JOIN sys_user_role t2 ON t1.id = t2.role_id
+            AND t1.disabled=0 and  t2.user_id = #{userId}
+    </select>
 
     <insert id="saveAssPerm">
         insert into sys_role_per(per_id,role_id) values

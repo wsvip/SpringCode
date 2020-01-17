@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ws.bean.Sys_User;
 import com.ws.common.utils.ResultUtil;
 import com.ws.service.UserService;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.Sha256Hash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class UserController {
     public Object index(){
         return "sys/user/index";
     }
+
+
 
     @RequestMapping("/userListData")
     @ResponseBody

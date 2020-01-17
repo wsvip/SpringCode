@@ -2,7 +2,6 @@ package com.ws.controller.sys;
 
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ws.bean.Sys_Permission;
 import com.ws.bean.Sys_Role;
 import com.ws.bean.Sys_User;
 import com.ws.common.utils.ResultUtil;
@@ -33,9 +32,9 @@ public class RoleController {
     @Autowired
     private PermissionService permissionService;
 
+    @RequiresPermissions("sys.role")
     @RequestMapping(value = "/index")
     public Object index(){
-
         return "sys/role/index";
     }
 

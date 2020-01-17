@@ -3,10 +3,14 @@ package com.ws.config;
 import com.ws.common.shiro.filter.PlatformAuthenticationFilter;
 import com.ws.common.shiro.realm.PlatformAuthorizingRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authz.Authorizer;
 import org.apache.shiro.mgt.SecurityManager;
+import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.tomcat.util.http.parser.Authorization;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -35,8 +39,8 @@ public class ShiroConfig {
         filterChainDefinitionMap.put("/statics/**", "anon");
         filterChainDefinitionMap.put("/register/**", "anon");
         filterChainDefinitionMap.put("/login/**", "anon");
-        filterChainDefinitionMap.put("/user/**", "anon");
-        filterChainDefinitionMap.put("/doLogin", "anon");
+        //filterChainDefinitionMap.put("/user/**", "authc");
+        //filterChainDefinitionMap.put("/doLogin", "anon");
         //配置退出 过滤器,其中的具体的退出代码Shiro已经替我们实现了
         filterChainDefinitionMap.put("/logout", "logout");
         //<!-- 过滤链定义，从上向下顺序执行，一般将/**放在最为下边 -->:这是一个坑呢，一不小心代码就不好使了;
@@ -84,10 +88,30 @@ public class ShiroConfig {
         return hashedCredentialsMatcher;
     }
     @Bean
-    public SecurityManager securityManager(PlatformAuthorizingRealm realm){
+    public SecurityManager securityManager(PlatformAuthorizingRealm realm, Authorizer authorizer){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
         defaultWebSecurityManager.setSessionManager(new DefaultWebSessionManager());
+        defaultWebSecurityManager.setAuthorizer(authorizer);
         defaultWebSecurityManager.setRealm(realm);
         return defaultWebSecurityManager;
     }
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
+    }
+
+    /**
+     * 开启aop注解支持
+     * @param securityManager
+     * @return
+     */
+    @Bean
+    public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
+        AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
+        authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
+        return authorizationAttributeSourceAdvisor;
+    }
+
 }

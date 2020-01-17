@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 @Controller
 @RequestMapping("/websocket")
-public class WebSocketController {
+public class WebSocketController {;
     @GetMapping("/socket/{socketId}")
     public ModelAndView socket(@PathVariable String socketId){
         ModelAndView modelAndView = new ModelAndView("/socket");

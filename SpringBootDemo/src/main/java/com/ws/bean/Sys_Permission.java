@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -25,21 +24,30 @@ public class Sys_Permission implements Serializable {
     private String url;
     //@Column(nullable = false)
     private String permission;
-    private Boolean isHasChildren=Boolean.FALSE;
+    private String icon;
+    private Boolean isHasChildren = Boolean.FALSE;
     private String pid;
     //@Column(nullable = false)
-    private Boolean disabled=Boolean.FALSE;
+    private Boolean disabled = Boolean.FALSE;
     //@ManyToMany
     //@JoinTable(name="SYS_ROLE_PER", joinColumns = {@JoinColumn(name = "per_id")},inverseJoinColumns = {@JoinColumn(name = "role_id")})
 
     @TableField(exist = false)
-    private List<Sys_Permission> children=new ArrayList<>();
+    private List<Sys_Permission> children = new ArrayList<>();
 
     @TableField(exist = false)
-    private List<Sys_Role> roleList=new ArrayList<>();
+    private List<Sys_Role> roleList = new ArrayList<>();
 
     @TableField(exist = false)
-    private Boolean checked=Boolean.FALSE;
+    private Boolean checked = Boolean.FALSE;
+
+    public String getIcon() {
+        return icon;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
 
     public Boolean getChecked() {
         return checked;

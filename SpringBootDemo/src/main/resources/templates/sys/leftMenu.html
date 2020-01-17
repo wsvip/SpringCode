@@ -1,42 +1,42 @@
 <%layout("index.html"){%>
 <div class="row">
     <div class="col-lg-1 menuBody">
-        <div class="row" >
-            <div class="col-lg-12 userMenu" style="background-color: #80626a">
-                <a href="javascript:void(0)" onclick="goToUserManager()">
-                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
-                    <p>用户管理</p>
+        <div class="row _menu" style="border-bottom: 1px solid #0077da;">
+            <div class="col-lg-12 menu">
+                <a href="/v1/api/sys/user/index">
+                    <i class="icon_yonghuguanli iconfont icon-icon_zhanghao"></i>
+                    <p class="left_menu_font">用户管理</p>
                 </a>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-lg-12 roleMenu" style="background-color: orange">
-                <a href="javascript:void(0)" onclick="goToRoleManager()">
+        <div class="row _menu" style="border-bottom: 1px solid #0077da;">
+            <div class="col-lg-12 menu">
+                <a href="/v1/api/sys/role/index">
                     <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
                     <p>角色管理</p>
                 </a>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-lg-12 permMenu" style="background-color: yellow">
-                <a href="javascript:void(0)" onclick="goToPermManager()">
-                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+        <div class="row _menu" style="border-bottom: 1px solid #0077da;">
+            <div class="col-lg-12 menu">
+                <a href="/v1/api/sys/perm/index">
+                    <i class="icon_yonghuguanli iconfont icon-quanxianguanli"></i>
                     <p>权限管理</p>
                 </a>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-lg-12 logMenu" style="background-color: deeppink">
-                <a href="javascript:void(0)" onclick="goToUserManager()">
-                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+        <div class="row _menu" style="border-bottom: 1px solid #0077da;">
+            <div class="col-lg-12 menu">
+                <a href="/v1/api/sys/log/index">
+                    <i class="icon_yonghuguanli iconfont icon-rizhi"></i>
                     <p>日志管理</p>
                 </a>
             </div>
         </div>
-        <div class="row" >
-            <div class="col-lg-12 statusMenu" style="background-color: darkmagenta">
-                <a href="javascript:void(0)" onclick="goToUserManager()">
-                    <i class="icon_yonghuguanli iconfont icon-zhanghaoquanxianguanli"></i>
+        <div class="row _menu">
+            <div class="col-lg-12 menu">
+                <a href="/v1/api/sys/status/index">
+                    <i class="icon_yonghuguanli iconfont icon-xingneng"></i>
                     <p>性能监控</p>
                 </a>
             </div>
@@ -46,36 +46,13 @@
 </div>
 <script>
     //获取屏幕高度
-    var avaliHeight=$(document).height();
+    var avaliHeight = $(document).height();
     //获取头部元素高度
-    var headerHeight =$(".sys_header").innerHeight();
-    var userMenu = $(".userMenu");
-    var roleMenu = $(".roleMenu");
-    var permMenu = $(".permMenu");
-    var logMenu = $(".logMenu");
-    var statusMenu = $(".statusMenu");
+    var headerHeight = $(".sys_header").innerHeight();
+    var _menu = $("._menu");
     //设置各个菜单模块高度
-    userMenu.height((avaliHeight-headerHeight)/5);
-    roleMenu.height((avaliHeight-headerHeight)/5);
-    permMenu.height((avaliHeight-headerHeight)/5);
-    logMenu.height((avaliHeight-headerHeight)/5);
-    statusMenu.height((avaliHeight-headerHeight)/5);
-    
-    
-    function goToUserManager() {
-        location.href='/v1/api/sys/user/index';
-    }
-    function goToRoleManager() {
-        location.href='/v1/api/sys/role/index';
-    }
-    function goToPermManager() {
-        location.href='/v1/api/sys/perm/index';
-    }
-    function goToLogManager() {
-        location.href='/v1/api/sys/log/index';
-    }
-    function statusManager() {
-        location.href='/v1/api/sys/status/index';
-    }
+    _menu.height((avaliHeight - headerHeight) / 5 - 0.8);
+
+    $(".menu").height((_menu.innerHeight()) / 2);
 </script>
 <%}%>

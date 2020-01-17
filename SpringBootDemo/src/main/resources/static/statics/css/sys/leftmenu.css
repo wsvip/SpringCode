@@ -1,24 +1,24 @@
 .menuBody{
-    background-color: red;
+    background-color: black;
     opacity: 0.5;
 }
-.userMenu{
+._menu{
+    position: relative;
+}
+.menu{
+    position: absolute;
     text-align: center;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
     /*height: 200px;*/
 }
-.roleMenu{
-    text-align: center;
-    /*height: 200px;*/
+.menu p{
+    color: #FFFFFF;
 }
-.permMenu{
-    text-align: center;
-    /*height: 200px;*/
+.menu p:hover {
+    color: #0077da;
 }
-.logMenu{
-    text-align: center;
-    /*height: 200px;*/
-}
-.statusMenu{
-    text-align: center;
-    /*height: 200px;*/
+.menu p:active{
+    color: red;
 }

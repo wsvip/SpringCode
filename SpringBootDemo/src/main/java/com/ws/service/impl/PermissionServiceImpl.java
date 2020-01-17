@@ -34,5 +34,12 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionMapper, Sys_Per
         return count;
     }
 
-
+    @Override
+    public List<Sys_Permission> findPermsByRoleId(String roleId) {
+        List<Sys_Permission> perms=permissionMapper.findPermsByRoleId(roleId);
+        if (null != perms && perms.size() > 0) {
+            return perms;
+        }
+        return null;
+    }
 }

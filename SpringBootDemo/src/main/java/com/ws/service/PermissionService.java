@@ -16,4 +16,11 @@ public interface PermissionService extends IService<Sys_Permission> {
     int delPermById(String permId);
 
     int delPermBath(ArrayList<String> ids);
+
+    /**
+     * 根据角色id获取权限列表
+     * @param roleId  角色id
+     * @return List<Sys_Permission>
+     */
+    List<Sys_Permission> findPermsByRoleId(String roleId);
 }
