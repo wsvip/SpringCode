@@ -2,11 +2,8 @@ package com.ws.annotation;
 
 import com.ws.bean.Sys_User;
 import com.ws.bean.Sys_log;
-import com.ws.common.utils.Common;
 import com.ws.common.utils.DateUtil;
-import com.ws.common.utils.ShiroUtil;
 import com.ws.common.utils.StringUtil;
-import com.ws.common.utils.Strings;
 import com.ws.service.LogService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
