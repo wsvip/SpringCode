@@ -1,6 +1,8 @@
 package com.ws.common.utils;
 
+import com.ws.common.shiro.realm.PlatformAuthorizingRealm;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.mgt.RealmSecurityManager;
 import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -290,4 +292,14 @@ public class ShiroUtil {
 
         return false;
     }
+
+    /**
+     * 清除缓存中的权限
+     */
+    public static void clearPermisson(){
+        RealmSecurityManager realm = (RealmSecurityManager) SecurityUtils.getSecurityManager();
+        PlatformAuthorizingRealm next = (PlatformAuthorizingRealm) realm.getRealms().iterator().next();
+        next.clearAuthz();
+    }
+
 }

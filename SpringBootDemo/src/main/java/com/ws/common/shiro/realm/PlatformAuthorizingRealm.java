@@ -79,5 +79,7 @@ public class PlatformAuthorizingRealm extends AuthorizingRealm {
         return null;
     }
 
-
+    public  void clearAuthz(){
+        clearCachedAuthorizationInfo(SecurityUtils.getSubject().getPrincipals());
+    }
 }

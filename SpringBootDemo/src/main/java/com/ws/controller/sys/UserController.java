@@ -2,6 +2,7 @@ package com.ws.controller.sys;
 
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ws.annotation.SLog;
 import com.ws.bean.Sys_User;
 import com.ws.common.utils.ResultUtil;
 import com.ws.service.UserService;
@@ -31,9 +32,9 @@ public class UserController {
     }
 
 
-
     @RequestMapping("/userListData")
     @ResponseBody
+    @SLog(operate = "查看用户列表")
     public Object userListData(@RequestParam("page")int page,@RequestParam("limit")int limit,@RequestParam(value = "userCondition",required = false) String userCondition){
         Page<Sys_User> iPage = new Page<>(page,limit);
         List<Sys_User> userlist = userService.userListByPage(iPage,userCondition);
@@ -55,6 +56,7 @@ public class UserController {
      * @Date:    2019/4/22  10:52
      * @Description:
      */
+    @SLog(operate = "新增用户")
     @RequestMapping(value = "/addUserDo", method = RequestMethod.POST)
     @ResponseBody
     public Object addUser(String username, String password, String email, String nickname,String tellphone) {
@@ -84,6 +86,7 @@ public class UserController {
      * @param userId 用户id
      * @return map
      */
+    @SLog(operate = "删除用户")
     @RequestMapping(value = "/delUserData",method = RequestMethod.POST)
     @ResponseBody
     public Object delUserData(String userId){
@@ -103,6 +106,7 @@ public class UserController {
      * @param request
      * @return
      */
+    @SLog(operate = "修改用户")
     @RequestMapping(value = "/editUser")
     public Object editUser(@RequestParam("userId") String userId, HttpServletRequest request){
         Sys_User user=userService.findByUserId(userId);

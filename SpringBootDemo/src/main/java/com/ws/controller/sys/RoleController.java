@@ -2,9 +2,11 @@ package com.ws.controller.sys;
 
 import com.alibaba.fastjson.JSONArray;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.ws.annotation.SLog;
 import com.ws.bean.Sys_Role;
 import com.ws.bean.Sys_User;
 import com.ws.common.utils.ResultUtil;
+import com.ws.common.utils.ShiroUtil;
 import com.ws.service.PermissionService;
 import com.ws.service.RoleService;
 import com.ws.service.UserService;
@@ -32,7 +34,7 @@ public class RoleController {
     @Autowired
     private PermissionService permissionService;
 
-    @RequiresPermissions("sys.role")
+    //@RequiresPermissions("sys.role")
     @RequestMapping(value = "/index")
     public Object index(){
         return "sys/role/index";
@@ -45,6 +47,7 @@ public class RoleController {
      * @param roleCondition 查询关键字
      * @return
      */
+    @SLog(operate = "查看角色列表")
     @RequestMapping("/roleListData")
     @ResponseBody
     public Object roleListData(@RequestParam("page")int page, @RequestParam("limit")int limit, @RequestParam(value = "roleCondition",required = false) String roleCondition){
@@ -68,6 +71,7 @@ public class RoleController {
      * @param role =需要新增的角色对象
      * @return
      */
+    @SLog(operate = "新增角色")
     @RequestMapping(value="/addRoleDo",method = RequestMethod.POST)
     @ResponseBody
     public Object addRoleDo(Sys_Role role){
@@ -98,6 +102,7 @@ public class RoleController {
      * @param role 前端提交的角色对象
      * @return 成功或失败信息
      */
+    @SLog(operate = "修改角色")
     @RequestMapping(value = "/editRoleDo",method = RequestMethod.POST)
     @ResponseBody
     public Object editRoleDo(Sys_Role role){
@@ -114,6 +119,7 @@ public class RoleController {
      * @param roleId 角色id
      * @return 成功或失败信息
      */
+    @SLog(operate = "删除角色")
     @RequestMapping(value = "/delRole",method = RequestMethod.POST)
     @ResponseBody
     public Object delRole(String roleId){
@@ -159,8 +165,10 @@ public class RoleController {
 
     @RequestMapping(value = "/saveAssUser",method = RequestMethod.POST)
     @ResponseBody
+    @SLog(operate = "角色-分配用户")
     public Object saveAssUser(@RequestParam("ids")String[] ids,@RequestParam("roleId")String roleId){
         int count=roleService.saveAssUser(ids,roleId);
+        ShiroUtil.clearPermisson();
         return ResultUtil.success(count,"分配成功");
     }
 
@@ -191,9 +199,10 @@ public class RoleController {
 
     @RequestMapping(value = "/saveAssPerm",method = RequestMethod.POST)
     @ResponseBody
-
+    @SLog(operate = "角色-分配权限")
     public Object saveAssPerm(@RequestParam("ids")String[] ids,@RequestParam("roleId")String roleId){
         int count=roleService.saveAssPerm(ids,roleId);
+        ShiroUtil.clearPermisson();
         return ResultUtil.success(null,"保存成功");
     }
 }

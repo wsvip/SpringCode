@@ -7,9 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-/**
- * Created by wizzer on 2016/6/24.
- */
+
 public class DateUtil {
     private static final Locale DEFAULT_LOCALE = Locale.CHINA;
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

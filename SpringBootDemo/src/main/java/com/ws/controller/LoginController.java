@@ -1,6 +1,7 @@
 package com.ws.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.ws.annotation.SLog;
 import com.ws.bean.Sys_User;
 import com.ws.common.shiro.token.PlatformToken;
 import com.ws.common.utils.ResultUtil;
@@ -56,6 +57,7 @@ public class LoginController {
      * @param request 请求体
      * @return 登录成功或失败信息
      */
+    @SLog(operate = "登录系统")
     @RequestMapping(value = "/doLogin",method=RequestMethod.POST)
     @ResponseBody
     public Object doLogin(String username,String password,HttpServletRequest request){
@@ -87,6 +89,7 @@ public class LoginController {
             user.setLoginCount(count+1);
             user.setLoginAt((int)(System.currentTimeMillis()/1000));
             userService.updateUser(user);
+
             return ResultUtil.success(null,"登录成功，正在跳转页面");
         } catch (AuthenticationException e) {
             e.printStackTrace();

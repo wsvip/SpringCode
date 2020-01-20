@@ -1,6 +1,7 @@
 package com.ws.controller.sys;
 
 import com.sun.corba.se.spi.ior.ObjectKey;
+import com.ws.annotation.SLog;
 import com.ws.bean.Sys_Permission;
 import com.ws.common.utils.ResultUtil;
 import com.ws.common.utils.StringUtil;
@@ -38,6 +39,7 @@ public class PermissionController {
      *
      * @return
      */
+    @SLog(operate = "查看权限列表")
     @RequestMapping("/permTreeTable")
     @ResponseBody
     public Object permTreeTable() {
@@ -61,6 +63,7 @@ public class PermissionController {
      * @param perm
      * @return
      */
+    @SLog(operate = "新增权限")
     @RequestMapping(value = "/addPermDo", method = RequestMethod.POST)
     @ResponseBody
     public Object addPermDo(Sys_Permission perm) {
@@ -75,7 +78,7 @@ public class PermissionController {
             return ResultUtil.error(1, "新增失败");
         }
     }
-
+    @SLog(operate = "删除权限")
     @RequestMapping(value = "/delPerm", method = RequestMethod.POST)
     @ResponseBody
     public Object delPerm(@RequestParam("permId") String permId) {
@@ -122,6 +125,7 @@ public class PermissionController {
      * @param permission
      * @return
      */
+    @SLog(operate = "修改权限")
     @RequestMapping(value = "/editDo", method = RequestMethod.POST)
     @ResponseBody
     public Object editDo(Sys_Permission permission) {
