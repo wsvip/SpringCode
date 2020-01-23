@@ -57,7 +57,7 @@ public class LoginController {
      * @param request 请求体
      * @return 登录成功或失败信息
      */
-    @SLog(operate = "登录系统")
+    //@SLog(operate = "登录系统")
     @RequestMapping(value = "/doLogin",method=RequestMethod.POST)
     @ResponseBody
     public Object doLogin(String username,String password,HttpServletRequest request){

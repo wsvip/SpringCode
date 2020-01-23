@@ -1,10 +1,8 @@
 package com.ws.controller.sys;
 
-import com.sun.corba.se.spi.ior.ObjectKey;
 import com.ws.annotation.SLog;
 import com.ws.bean.Sys_Permission;
 import com.ws.common.utils.ResultUtil;
-import com.ws.common.utils.StringUtil;
 import com.ws.common.utils.Strings;
 import com.ws.common.utils.TreeUtil;
 import com.ws.service.PermissionService;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.transform.Result;
 import java.util.ArrayList;
 import java.util.List;
 
